@@ -3,18 +3,23 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const router = express.Router();
 require('../config/passport')(passport);
-const Product = require('../models').Product;
+const iMote = require('../models').iMote;
 const User = require('../models').User;
 
 router.post('/signup', function(req, res) {
+
+  console.log("POST Sign Up, Email: " + req.body.email)
+
   console.log(req.body);
-  if (!req.body.username || !req.body.password) {
+  if (!req.body.email || !req.body.password) {
     res.status(400).send({msg: 'Please pass username and password.'})
   } else {
     User
       .create({
-        username: req.body.username,
-        password: req.body.password
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        serial_number: req.body.serial_number
       })
       .then((user) => res.status(201).send(user))
       .catch((error) => {
@@ -25,10 +30,13 @@ router.post('/signup', function(req, res) {
 });
 
 router.post('/signin', function(req, res) {
+
+  console.log("POST Sign In, Email: " + req.body.email)
+
   User
       .find({
         where: {
-          username: req.body.username
+          email: req.body.email
         }
       })
       .then((user) => {
@@ -52,28 +60,64 @@ router.post('/signin', function(req, res) {
       .catch((error) => res.status(400).send(error));
 });
 
-router.get('/product', passport.authenticate('jwt', { session: false}), function(req, res) {
+router.get('/imote', passport.authenticate('jwt', { session: false }), function(req, res) {
+
+  console.log("GET iMote")
+
   var token = getToken(req.headers);
   if (token) {
-    Product
+    iMote
       .findAll()
-      .then((products) => res.status(200).send(products))
+      .then((imote) => res.status(200).send(imote))
       .catch((error) => { res.status(400).send(error); });
   } else {
     return res.status(403).send({success: false, msg: 'Unauthorized.'});
   }
 });
 
-router.post('/product', passport.authenticate('jwt', { session: false}), function(req, res) {
+router.post('/imote', passport.authenticate('jwt', { session: false }), function(req, res) {
+
+  console.log("POST iMote")
+
   var token = getToken(req.headers);
   if (token) {
-    Product
+    iMote
       .create({
-        prod_name: req.body.prod_name,
-        prod_desc: req.body.prod_desc,
-        prod_price: req.body.prod_price
+        serial_number: req.body.serial_number,
+        token: req.body.token,
+        url: req.body.url
+        // TODO: push_token, push_url, wifi_ssid
       })
-      .then((product) => res.status(201).send(product))
+      .then((imote) => res.status(201).send(imote))
+      .catch((error) => res.status(400).send(error));
+  } else {
+    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  }
+});
+
+router.delete('/imote', passport.authenticate('jwt', { session: false }), function(req, res) {
+
+  console.log("DELETE iMote")
+
+  var token = getToken(req.headers);
+  if (token) {
+    iMote
+      .findOne({
+        where: 
+        {
+          serial_number: req.body.serial_number
+        }
+      })
+      .then((imote) => {
+        if (!imote) {
+          return res.status(401).send({
+            message: 'Serial number not found.',
+          });
+        }
+        
+        imote.destroy()
+        res.status(200).send(imote)
+      })
       .catch((error) => res.status(400).send(error));
   } else {
     return res.status(403).send({success: false, msg: 'Unauthorized.'});

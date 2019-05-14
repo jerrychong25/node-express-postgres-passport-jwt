@@ -1,17 +1,29 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('iMotes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
+      serial_number: {
         type: Sequelize.STRING
       },
-      password: {
+      token: {
+        type: Sequelize.STRING
+      },
+      url: {
+        type: Sequelize.STRING
+      },
+      push_token: {
+        type: Sequelize.STRING
+      },
+      push_url: {
+        type: Sequelize.STRING
+      },
+      wifi_ssid: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -25,6 +37,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('iMotes');
   }
 };
