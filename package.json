@@ -1,6 +1,6 @@
 {
-  "name": "secure-node",
-  "version": "0.0.0",
+  "name": "node-express-postgres-passport-jwt",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
