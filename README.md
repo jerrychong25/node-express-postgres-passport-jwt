@@ -1,4 +1,9 @@
-# Node.js Back End Web Application with REST API (Express.js), User JWT Authentication and PostgreSQL Data Storage
+# Node.js Back End Web Application with REST API, User JWT Authentication and PostgreSQL Data Storage
+
+
+[![GitHub release](https://img.shields.io/github/release/jerrychong25/node-express-postgres-passport-jwt.svg)](https://gitHub.com/jerrychong25/node-express-postgres-passport-jwt/releases/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/jerrychong25/node-express-postgres-passport-jwt/graphs/commit-activity)
+[![HitCount](http://hits.dwyl.com/jerrychong25/node-express-postgres-passport-jwt.svg)](http://hits.dwyl.com/jerrychong25/node-express-postgres-passport-jwt)
 
 ## Getting Started
 
@@ -18,7 +23,7 @@ Hosted on local host.
 
 ## Authors
 
-**Chong Hon Fong** - [jerrychong25](https://github.com/jerrychong25)
+**Jerry Chong** - [jerrychong25](https://github.com/jerrychong25)
 
 ## License
 
