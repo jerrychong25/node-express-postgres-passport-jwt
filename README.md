@@ -1,4 +1,4 @@
-# Node.js Back End Web Application with REST API, User JWT Authentication and PostgreSQL Data Storage
+# Node.js Back End Web Application with REST API, User JWT Authentication and PostgreSQL
 
 
 [![GitHub release](https://img.shields.io/github/release/jerrychong25/node-express-postgres-passport-jwt.svg)](https://gitHub.com/jerrychong25/node-express-postgres-passport-jwt/releases/)
@@ -7,7 +7,7 @@
 
 ## Getting Started
 
-This is a Node.js back end web application, which features REST API interface via Express.js, user JWT authentication, and PostgreSQL data storage.
+This is a Node.js back end web application, which features REST API interface via Express.js, user JWT authentication, and PostgreSQL.
 
 ## Deployment
 
